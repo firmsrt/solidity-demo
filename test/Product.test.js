@@ -8,6 +8,7 @@ const compiledProduct = require('../blockchain/build/Product.json');
 
 let productAddress;
 let product;
+let sellerAddress;
 
 beforeEach(async ()=> {
     accounts = await web3.eth.getAccounts();
@@ -20,6 +21,7 @@ beforeEach(async ()=> {
       from: accounts[0],
       gas: '1000000'
     });
+    sellerAddress = accounts[0];
 
     [productAddress] = await factory.methods.getDeployedProducts().call();
 
@@ -35,5 +37,20 @@ describe('Product', () => {
     it('deploys a factory and product', () => {
         assert.ok(factory.options.address);
         assert.ok(product.options.address);
+    });
+
+    it('Get number of deploys products', async () => {
+        let num = await factory.methods.getNumberOfDeployedProduct().call();
+        assert.equal(num, 1);
+    });
+
+    it('Get deploys products', async () => {
+      let deployList = await factory.methods.getDeployedProducts().call();
+      assert.equal(deployList[0], productAddress);
+    });
+
+    it('Get product by seller', async () => {
+      let productList = await factory.methods.getProductListBySeller(sellerAddress).call();
+      assert.equal(productList[0], productAddress);
     });
 });
