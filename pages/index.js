@@ -7,7 +7,6 @@ class MercuryIndex extends Component {
     render() {
         return (
             <Layout>
-                
             </Layout>
         );
     }
