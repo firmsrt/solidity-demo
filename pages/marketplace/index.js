@@ -5,7 +5,7 @@ import ProductInstance from '../../blockchain/deployContract/Product';
 import ProductCard from '../../components/ProductCard';
 import web3 from '../../blockchain/web3';
 import Link from 'next/link';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button,Typography, Container } from '@mui/material';
 
 
 class Marketplace extends Component {
@@ -17,6 +17,7 @@ class Marketplace extends Component {
             let prdtInstance = ProductInstance(productAddr);
             let detail = await prdtInstance.methods.getProductDetails().call();
             let product = {
+                productAddr: productAddr,
                 sellerAddr: detail[0],
                 productName: detail[1],
                 productDesc: detail[2],
@@ -25,7 +26,8 @@ class Marketplace extends Component {
             }
             productList.push(product);
         }
-        return { productList };
+        let productSize = productList.length;
+        return { productList, productSize };
     }
 
     renderProductCard() {
@@ -39,14 +41,26 @@ class Marketplace extends Component {
     render() {
         return (
             <Layout>
-                <Link href="marketplace/myproduct">
-                    <Button> My Product</Button>
-                </Link>
-                <Button>My Sale</Button>
-                <Button>Order History</Button>
-                <Grid container spacing={{ xs: 1 }}>
-                    {this.renderProductCard()}
-                </Grid>
+                <Container maxWidth="false" style={{marginTop: 40}} disableGutters={true}>
+                    <Grid container>
+                        <Grid item md={4} xs={12} style={{display: "flex"}}>
+                            <Typography variant="h2">
+                                Marketplace
+                            </Typography>
+                            <Typography variant="subtitle1" alignSelf="center" style={{marginLeft: 10}}>
+                                All Product ({this.props.productSize})
+                            </Typography>
+                        </Grid>
+                        <Grid item md={8} xs={12} textAlign="right" alignSelf="center">
+                            <Button>Order History</Button>
+                            <Button>My Sales</Button>
+                            <Button>My Product</Button>
+                        </Grid>
+                    </Grid>
+                    <Grid container rowSpacing={{ xs: "30px" }} style={{marginTop: "10px"}}>
+                        {this.renderProductCard()}
+                    </Grid>
+                </Container>
             </Layout>
         );
     }
