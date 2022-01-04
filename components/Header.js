@@ -9,14 +9,14 @@ const header = () => {
         <AppBar position="sticky" color="inherit" elevation={0}>
             <Toolbar disableGutters={true}>
                 <Grid container>
-                    <Grid item md={2} xs={12}>
+                    <Grid item md={3} xs={12}>
                         <Link href="/">
                             <Typography variant="h1">
                             Mercury.
                             </Typography>
                         </Link>
                     </Grid>
-                    <Grid item md={7} xs={12} textAlign="center" alignSelf="center">
+                    <Grid item md={6} xs={12} textAlign="center" alignSelf="center">
                         <Link href="/">
                             <Button variant={router.pathname == "/" ? "menuActive" : "menu"} >Home</Button>
                         </Link>

@@ -54,7 +54,9 @@ class Marketplace extends Component {
                         <Grid item md={8} xs={12} textAlign="right" alignSelf="center">
                             <Button>Order History</Button>
                             <Button>My Sales</Button>
-                            <Button>My Product</Button>
+                            <Link href="/marketplace/myproduct">
+                                <Button>My Product</Button>
+                            </Link>
                         </Grid>
                     </Grid>
                     <Grid container rowSpacing={{ xs: "30px" }} style={{marginTop: "10px"}}>

@@ -4,7 +4,7 @@ import { Card,CardActions,CardContent,CardMedia,Avatar,Typography,Grid } from '@
 class ProductCard extends Component {
     render() {
         return (
-            <Grid item xs={6} md={3} xl={2} key={this.props.productAddr} align="center">
+            <Grid item xs={6} md={3} xl={2} key={this.props.productAddr}>
                 <Card>
                     <CardMedia
                         component="img"
@@ -12,13 +12,13 @@ class ProductCard extends Component {
                         alt="green iguana"
                     />
                     <CardContent>
-                        <Typography variant="body1" component="div" textAlign="left">
+                        <Typography variant="body1" style={{ wordWrap: "break-word" }}>
                         {this.props.product.productName}
                         </Typography>
                     </CardContent>
                     <CardActions>
+                        <Avatar src={"/ethIcon.png"} sx={{ width: "18px", height: "18px", marginRight:"8px" }}/>
                         <Typography variant="body2" color="text.secondary" display="flex">
-                            <Avatar src={"/ethIcon.png"} sx={{ width: "18px", height: "18px", marginRight:"8px" }}/>
                             {this.props.product.price}
                         </Typography>
                     </CardActions>
