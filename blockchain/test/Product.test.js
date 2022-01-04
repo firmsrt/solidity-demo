@@ -3,8 +3,8 @@ const ganache = require('ganache-cli');
 const Web3 = require('web3');
 const web3 = new Web3(ganache.provider());
 
-const productFactory = require('../blockchain/build/ProductFactory.json');
-const compiledProduct = require('../blockchain/build/Product.json');
+const productFactory = require('../build/ProductFactory.json');
+const compiledProduct = require('../build/Product.json');
 
 let productAddress;
 let product;
