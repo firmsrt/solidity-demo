@@ -1,2 +1,2 @@
-# mercury
+# solidity demo
 decentralize marketplace
